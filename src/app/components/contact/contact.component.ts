@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-
+      
   }
 
   saveMessage(contactForm: NgForm) {
