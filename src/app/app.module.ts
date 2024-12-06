@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER,NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,19 +15,21 @@ import { BalanceComponent } from './components/balance/balance.component';
 import { LoansComponent } from './components/loans/loans.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { environment } from '../environments/environment'; // Import environment file
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8280/',
+        url: environment.keycloakUrl,
         realm: 'eazybankdev',
         clientId: 'eazypublicclient',
       },
       initOptions: {
         pkceMethod: 'S256',
         redirectUri: 'http://localhost:4200/dashboard',
-      },loadUserProfileAtStartUp: false
+      },
+      loadUserProfileAtStartUp: false,
     });
 }
 
@@ -43,7 +45,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AccountComponent,
     BalanceComponent,
     LoansComponent,
-    CardsComponent
+    CardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,10 +64,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-
-}
+export class AppModule {}
