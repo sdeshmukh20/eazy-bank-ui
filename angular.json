@@ -13,21 +13,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "base64-js",
-              "js-sha256"
-           ],
+            "allowedCommonJsDependencies": ["base64-js", "js-sha256"],
             "outputPath": "dist/bank-app-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
@@ -50,7 +42,7 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+            "dev": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -60,7 +52,21 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
+            "uat": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
                 }
               ]
             }
@@ -73,11 +79,14 @@
             "production": {
               "browserTarget": "bank-app-ui:build:production"
             },
-            "development": {
-              "browserTarget": "bank-app-ui:build:development"
+            "dev": {
+              "browserTarget": "bank-app-ui:build:dev"
+            },
+            "uat": {
+              "browserTarget": "bank-app-ui:build:uat"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "uat"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -88,15 +97,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"

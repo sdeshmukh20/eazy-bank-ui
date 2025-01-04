@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   rooturl: 'http://localhost:7002',
   keycloakUrl: 'http://localhost:5002/',
 };
